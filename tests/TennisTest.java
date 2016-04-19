@@ -1,4 +1,5 @@
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -6,16 +7,24 @@ import org.junit.Test;
  */
 public class TennisTest {
 
-    @Test
-    public void testinitialisationNouveauJeu()
+    Jeu jeu;
+
+    @Before
+    public void before()
     {
-        new Jeu();
+        jeu = new Jeu();
     }
 
     @Test
     public void testAfficherScoreDebutDePartie()
     {
-        Jeu jeu = new Jeu();
         Assert.assertEquals("0-0", jeu.score());
+    }
+
+    @Test
+    public void testAddNewPoint()
+    {
+        jeu.add(1);
+        Assert.assertEquals("0-15", jeu.score());
     }
 }
