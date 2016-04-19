@@ -69,8 +69,54 @@ public class TennisTest {
         jeu.add(1);
         jeu.add(0);
         jeu.add(1);
+        Assert.assertTrue(jeu.isGameRunning());
+        Assert.assertEquals("Equal",jeu.winner());
+    }
+
+    @Test
+    public void testAddNewPoint_advantage()
+    {
+        jeu.add(0);
+        jeu.add(1);
+        jeu.add(0);
+        jeu.add(1);
+        jeu.add(0);
+        jeu.add(1);
+        jeu.add(1);
+        Assert.assertTrue(jeu.isGameRunning());
+        Assert.assertEquals("Advantage",jeu.winner());
+    }
+
+    @Test
+    public void testAddNewPoint_returnToEqual()
+    {
+        jeu.add(0);
+        jeu.add(1);
+        jeu.add(0);
+        jeu.add(1);
+        jeu.add(0);
+        jeu.add(1);
+        jeu.add(1);
         jeu.add(0);
         Assert.assertTrue(jeu.isGameRunning());
         Assert.assertEquals("Equal",jeu.winner());
+    }
+
+    @Test
+    public void testAddNewPoint_saveAndLoad()
+    {
+        jeu.add(0);
+        jeu.add(1);
+        jeu.add(0);
+        jeu.add(1);
+        Assert.assertEquals("30-30", jeu.score());
+        jeu.save();
+        Assert.assertEquals("30-30", jeu.score());
+        jeu.reset();
+        Assert.assertEquals("0-0", jeu.score());
+        jeu.add(1);
+        Assert.assertEquals("0-15", jeu.score());
+        jeu.load();
+        Assert.assertEquals("30-30", jeu.score());
     }
 }
