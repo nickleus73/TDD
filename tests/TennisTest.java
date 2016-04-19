@@ -13,8 +13,9 @@ public class TennisTest {
     }
 
     @Test
-    public void testAfficherScoreDebutDePartie() {
+    public void testAfficherScoreDebutDePartie()
+    {
         Jeu jeu = new Jeu();
-        Assert.assertEquals("0-0",jeu.score());
+        Assert.assertEquals("0-0", jeu.score());
     }
 }
