@@ -35,4 +35,13 @@ public class TennisTest {
         jeu.add(1);
         Assert.assertEquals("0-30", jeu.score());
     }
+
+    @Test
+    public void testAddNewPoint_40()
+    {
+        jeu.add(1);
+        jeu.add(1);
+        jeu.add(1);
+        Assert.assertEquals("0-40", jeu.score());
+    }
 }
