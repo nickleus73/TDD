@@ -17,6 +17,26 @@ public class Jeu {
         }
     }
 
+    public boolean isGameRunning()
+    {
+        return false;
+    }
+
+    public String winner()
+    {
+        String player = "";
+
+        if(scorePlayer1 > 40) {
+            player = "Player1";
+        }
+
+        if(scorePlayer2 > 40) {
+            player = "Player2";
+        }
+
+        return player;
+    }
+
     private int upScore(int score){
         switch(score){
             case 0:
@@ -24,7 +44,10 @@ public class Jeu {
                 return score += 15;
             case 30:
                 return score += 10;
+            case 40:
+                return score += 1;
         }
+
         return score;
     }
 }

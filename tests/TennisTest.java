@@ -18,6 +18,7 @@ public class TennisTest {
     @Test
     public void testAfficherScoreDebutDePartie()
     {
+        Assert.assertTrue(jeu.isGameRunning());
         Assert.assertEquals("0-0", jeu.score());
     }
 
@@ -25,6 +26,7 @@ public class TennisTest {
     public void testAddNewPoint()
     {
         jeu.add(1);
+        Assert.assertTrue(jeu.isGameRunning());
         Assert.assertEquals("0-15", jeu.score());
     }
 
@@ -33,6 +35,7 @@ public class TennisTest {
     {
         jeu.add(1);
         jeu.add(1);
+        Assert.assertTrue(jeu.isGameRunning());
         Assert.assertEquals("0-30", jeu.score());
     }
 
@@ -42,6 +45,7 @@ public class TennisTest {
         jeu.add(1);
         jeu.add(1);
         jeu.add(1);
+        Assert.assertTrue(jeu.isGameRunning());
         Assert.assertEquals("0-40", jeu.score());
     }
 
@@ -54,5 +58,19 @@ public class TennisTest {
         jeu.add(1);
         Assert.assertFalse(jeu.isGameRunning());
         Assert.assertEquals("Player2",jeu.winner());
+    }
+
+    @Test
+    public void testAddNewPoint_equals()
+    {
+        jeu.add(0);
+        jeu.add(1);
+        jeu.add(0);
+        jeu.add(1);
+        jeu.add(0);
+        jeu.add(1);
+        jeu.add(0);
+        Assert.assertTrue(jeu.isGameRunning());
+        Assert.assertEquals("Equal",jeu.winner());
     }
 }
