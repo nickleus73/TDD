@@ -1,3 +1,4 @@
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -9,5 +10,11 @@ public class TennisTest {
     public void testinitialisationNouveauJeu()
     {
         new Jeu();
+    }
+
+    @Test
+    public void testAfficherScoreDebutDePartie() {
+        Jeu jeu = new Jeu();
+        Assert.assertEquals("0-0",jeu.score());
     }
 }
