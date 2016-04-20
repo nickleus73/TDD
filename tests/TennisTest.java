@@ -105,6 +105,7 @@ public class TennisTest {
     @Test
     public void testAddNewPoint_saveAndLoad()
     {
+        jeu.setDb(new DatabaseBouchon());
         jeu.add(0);
         jeu.add(1);
         jeu.add(0);
@@ -118,5 +119,9 @@ public class TennisTest {
         Assert.assertEquals("0-15", jeu.score());
         jeu.load();
         Assert.assertEquals("30-30", jeu.score());
+        jeu.reset();
+        Assert.assertEquals("0-0", jeu.score());
+        jeu.load();
+        Assert.assertEquals("15-15", jeu.score());
     }
 }

@@ -5,7 +5,9 @@ import java.io.IOException;
  */
 public class Jeu {
 
-    private Database db = new Database();
+
+
+    private IDatabase db = new Database();
 
     boolean isGameRunning = true;
 
@@ -100,5 +102,13 @@ public class Jeu {
         this.isGameRunning = true;
         this.setScorePlayer2(0);
         this.setScorePlayer1(0);
+    }
+
+    public IDatabase getDb() {
+        return db;
+    }
+
+    public void setDb(IDatabase db) {
+        this.db = db;
     }
 }

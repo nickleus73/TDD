@@ -6,7 +6,7 @@ import java.util.HashMap;
 /**
  * Created by sephirius on 19/04/16.
  */
-public class Database {
+public class Database implements IDatabase{
 
     public void save(Jeu jeu) throws IOException {
         File f = new File("bbd.json");
