@@ -1,6 +1,14 @@
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
+
+import java.io.IOException;
+import java.util.Arrays;
+
+import static org.mockito.Mockito.*;
 
 /**
  * Created by nickleus on 19/04/16.
@@ -123,5 +131,51 @@ public class TennisTest {
         Assert.assertEquals("0-0", jeu.score());
         jeu.load();
         Assert.assertEquals("15-15", jeu.score());
+    }
+
+    @Test
+    public void testAddNewPoint_mock() throws IOException {
+        /*jeu = spy(Jeu.class);
+        when(jeu.save()).then();
+        when(jeu.load()).then();
+        */
+
+        Database db = new Database();
+        db = spy(db);
+        doAnswer(new Answer<Void>() {
+            public Void answer(InvocationOnMock invoc) {
+                Object[] args = invoc.getArguments();
+                Jeu jeu = (Jeu)args[0];
+                jeu.setScorePlayer1(30);
+                jeu.setScorePlayer2(30);
+                return null;
+            }
+        }).when(db).load(any(Jeu.class));
+
+        doAnswer(new Answer<Void>() {
+            public Void answer(InvocationOnMock invoc) {
+                return null;
+            }
+        }).when(db).save(any(Jeu.class));
+
+        jeu.setDb(db);
+
+        jeu.add(0);
+        jeu.add(1);
+        jeu.add(0);
+        jeu.add(1);
+        Assert.assertEquals("30-30", jeu.score());
+        jeu.save();
+        Assert.assertEquals("30-30", jeu.score());
+        jeu.reset();
+        Assert.assertEquals("0-0", jeu.score());
+        jeu.add(1);
+        Assert.assertEquals("0-15", jeu.score());
+        jeu.load();
+        Assert.assertEquals("30-30", jeu.score());
+        jeu.reset();
+        Assert.assertEquals("0-0", jeu.score());
+        jeu.load();
+        Assert.assertEquals("30-30", jeu.score());
     }
 }
